@@ -11,7 +11,7 @@ export default function Cart() {
 
   return (
     <Transition appear show={showCart} as={Fragment}>
-      <Dialog as="div" className="relative z-50 container" onClose={closeCart}>
+      <Dialog as="div" className="container relative z-50" onClose={closeCart}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -38,38 +38,51 @@ export default function Cart() {
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-800">
                 <Dialog.Title
                   as="h3"
-                  className="text-2xl   font-medium text-center leading-6 text-gray-900 dark:text-slate-50"
+                  className="text-center   text-2xl font-medium leading-6 text-gray-900 dark:text-slate-50"
                 >
                   Items in Cart
                 </Dialog.Title>
 
-                <div className="relative flex-auto p-6 ">
+                <div className="relative flex-auto p-4 ">
                   {cartItem.length > 0 ? (
-                    <table className="table-auto  ">
+                    <table className="table-auto  divide-y-2 divide-black ">
                       <thead>
-                        <tr>
+                        <tr className="uppercase">
                           <th>Item</th>
                           <th>price</th>
                           <th>remove </th>
                         </tr>
                       </thead>
-                      <tbody className=" divi  divide-y-2 divide-gray-300   ">
+                      <tbody className="   divide-gray-300   ">
                         {cartItem.map((items) => (
                           <tr key={items.id} className=" ">
-                            <td>
-                              <div className=" ">{items.title}</div>
+                            <td className=" ">
+                              <div className="  ">{items.title}</div>
                             </td>
-                            <td>
-                              <div className="">{items.price}</div>
+                            <td className="">
+                              <div className=""> ₹{items.price}</div>
                             </td>
-                            <td className=" text-center font-bold text-red-500 ">
+                            <td className="  text-center  ">
                               <button
                                 type="button"
                                 onClick={() => {
                                   removeFromCart(items);
                                 }}
                               >
-                                X
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={1.5}
+                                  stroke="currentColor"
+                                  className="h-6 w-6 text-red-500"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
                               </button>
                             </td>
                           </tr>
