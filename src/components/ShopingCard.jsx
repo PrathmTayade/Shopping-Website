@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { StateContext } from "./StateContext";
 
 export default function ShopingCard({ products }) {
@@ -8,10 +8,10 @@ export default function ShopingCard({ products }) {
   return (
     <div>
       <div className="w-full max-w-sm overflow-auto rounded-lg border border-gray-200 bg-white p-3 shadow-md   dark:border-slate-700 dark:bg-slate-800">
-        <div className="">
+        <div className=" ">
           <img
             draggable="false"
-            className="da rounded-t-lg p-10  "
+            className=" p-10  "
             src={products.image}
             alt="product image"
           />
@@ -80,7 +80,7 @@ export default function ShopingCard({ products }) {
             </span>
           </div>
           <div>
-            <div className="mb-3  font-normal text-gray-700 ">
+            <div className="\ mb-3 font-normal text-gray-700 ">
               {products.description}
             </div>
           </div>
@@ -90,13 +90,29 @@ export default function ShopingCard({ products }) {
             </span>
 
             {/* TODO Dynaamic button  */}
-            <button
-              type="button"
-              onClick={() => context.addToCart(products)}
-              className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Add to Cart
-            </button>
+            <div>
+              {context.cartItem.includes(products) ? (
+                <button
+                  type="button"
+                  className=" rounded-lg px-5 py-2.5 text-center text-sm font-medium text-red-600 outline outline-red-600 hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-300"
+                  onClick={() => {
+                    context.removeFromCart(products);
+                  }}
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    context.addToCart(products);
+                  }}
+                  className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Add to Cart
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

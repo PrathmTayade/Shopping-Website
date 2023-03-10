@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/Navbar";
+import NavBar from "./pages/Navbar";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
@@ -32,22 +32,21 @@ export default function App() {
     fetchData();
   }, []);
 
+  function closeCart() {
+    setShowCart(false);
+  }
+  function openCart() {
+    setShowCart(true);
+  }
+
   const addToCart = (e) => {
     setCartItem((cartItem) => [...cartItem, e]);
-    console.log(cartItem);
   };
 
   const removeFromCart = (e) => {
     const removedItems = cartItem.filter((item) => item !== e);
     setCartItem(removedItems);
   };
-
-  function cartHandler(e) {
-    setShowCart(e);
-    showCart
-      ? (document.body.style.position = "")
-      : (document.body.style.position = "fixed");
-  }
 
   const dollToRs = (dollar) => {
     const rs = parseInt(dollar) * 81.91;
@@ -56,13 +55,19 @@ export default function App() {
 
   return (
     <StateContext.Provider
-      value={{ products, cartItem, addToCart, removeFromCart }}
+      value={{
+        products,
+        cartItem,
+        addToCart,
+        removeFromCart,
+        showCart,
+        openCart,
+        closeCart,
+      }}
     >
-      <div className="container   ">
-        <img src="" alt="" />
-        <NavBar cartHandler={cartHandler} />
-
-        {showCart ? <Cart cartHandler={cartHandler} /> : null}
+      <div className="container ">
+        <NavBar />
+        <Cart />
 
         <Routes>
           <Route path="/" element={<Home />} />

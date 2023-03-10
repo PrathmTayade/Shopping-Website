@@ -19,8 +19,8 @@ export default function CartPage() {
   const price = totalPrice();
 
   return (
-    <div className="dark:bg-slate-900 bg-slate-100 h-screen  ">
-      <div className="  w-screen overflow-auto p-5 ">
+    <div className="container flex flex-col bg-slate-50 dark:bg-slate-900   ">
+      <div className=" w-full flex-auto overflow-auto p-5 ">
         <div className="mx-auto border  shadow-md ">
           <table className="  mx-auto w-full table-auto  text-center   text-sm text-gray-500 dark:text-gray-400">
             <thead className="bg-gray-50  uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
@@ -39,7 +39,7 @@ export default function CartPage() {
         <div className="">=</div>
         <div className=" px-10 ">₹ {price}</div>
       </div>
-      <div className="flex items-center justify-center rounded-b border-t border-solid border-slate-200 p-6 md:justify-end">
+      <div className=" flex  items-center justify-center rounded-b border-t border-solid border-slate-200 p-6 md:justify-end">
         <button
           className="mr-1 mb-1 rounded bg-green-500 px-6 py-3 text-sm font-bold uppercase text-black shadow outline-none transition-all duration-150 ease-linear hover:bg-blue-500 hover:shadow-lg focus:outline-none active:bg-green-600"
           type="button"
