@@ -65,15 +65,17 @@ export default function App() {
         closeCart,
       }}
     >
-      <div className="container ">
-        <NavBar />
-        <Cart />
+      <div className="container h-screen  w-full ">
+        <div className="flex h-full w-full flex-col  ">
+          <NavBar />
+          <Cart />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+        </div>
       </div>
     </StateContext.Provider>
   );

@@ -18,7 +18,7 @@ export default function CartPage() {
   const price = totalPrice();
 
   return (
-    <div className="container flex flex-col bg-slate-50 dark:bg-slate-900   ">
+    <div className="container flex flex-1  flex-col bg-slate-50 dark:bg-slate-900   ">
       <div className=" w-full flex-auto overflow-auto p-5 ">
         <div className="mx-auto border  shadow-md ">
           <table className="  mx-auto w-full table-auto  text-center   text-sm text-gray-500 dark:text-gray-400">
