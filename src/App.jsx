@@ -7,7 +7,9 @@ import Cart from "./pages/Cart";
 import { StateContext } from "./components/StateContext";
 import CartPage from "./pages/CartPage";
 
+
 export default function App() {
+
   const [products, setProducts] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [cartItem, setCartItem] = useState([]);
@@ -66,6 +68,7 @@ export default function App() {
         
       }}
     >
+      
       <div className="container h-screen  w-full ">
         <div className="flex h-full w-full flex-col  ">
           <NavBar />

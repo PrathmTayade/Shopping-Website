@@ -1,21 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { StateContext } from "../components/StateContext";
+import { decrement, increment } from "../redux/quantityReducer";
 
 export default function CartPage() {
   const { cartItem } = useContext(StateContext);
-  const [quantity, setQuantity] = useState(1);
-
-  const incrementItems = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decrementItems = () => {
-    if (quantity === 0) {
-      return;
-    }
-
-    setQuantity(quantity - 1);
-  };
+  const quantity = useSelector((state) => state.quantity.value);
+  const dispatch = useDispatch();
 
   return (
     <div className="container flex flex-1  flex-col bg-slate-50 dark:bg-slate-900   ">
@@ -49,7 +40,9 @@ export default function CartPage() {
                     <div className="flex flex-col  shadow-md  transition  duration-150 ease-in-out md:inline-flex  md:flex-row ">
                       <button
                         type="button"
-                        onClick={incrementItems}
+                        onClick={() => {
+                          dispatch(increment());
+                        }}
                         className="inline-block rounded-t bg-sky-400 px-3 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:rounded-l md:rounded-tr-none md:px-6"
                       >
                         +
@@ -62,7 +55,9 @@ export default function CartPage() {
                       </button>
                       <button
                         type="button"
-                        onClick={decrementItems}
+                        onClick={() => {
+                          dispatch(decrement());
+                        }}
                         className="inline-block rounded-b bg-sky-400 px-3 pt-2.5  pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0  active:bg-sky-700 md:rounded-r md:rounded-bl-none md:px-6"
                       >
                         -
