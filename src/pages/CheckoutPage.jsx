@@ -29,7 +29,7 @@ export default function CheckoutPage() {
     return result;
   };
   return (
-    <div className="container flex flex-1  flex-col bg-slate-50 dark:bg-slate-900   ">
+    <div className="container flex w-screen flex-1 flex-col bg-slate-50 dark:bg-slate-900   ">
       <div className=" w-full flex-auto overflow-auto p-5 ">
         <div className="mx-auto border  shadow-md ">
           <table className="  mx-auto w-full table-auto  text-center   text-sm text-gray-500 dark:text-gray-400">
@@ -51,7 +51,7 @@ export default function CheckoutPage() {
                       <div className="  w-14 ">
                         <img className="w-full " src={items.image} alt="" />
                       </div>
-                      <div className="hidden px-3 py-2 font-bold text-lg md:block ">
+                      <div className="hidden px-3 py-2 text-lg font-bold md:block ">
                         {items.title}
                       </div>
                     </div>
@@ -68,12 +68,12 @@ export default function CheckoutPage() {
           </table>
         </div>
       </div>
-      <div className="flex  justify-evenly  px-5  text-3xl    ">
+      <div className="flex   w-full justify-evenly  px-5  text-3xl    ">
         <div className=" font-bold  ">Total Price: </div>
         {/* <div className="">
           <button onClick={() => console.log(total())}>total</button>
         </div> */}
-        <div className=" px-10 ">₹ {amount} </div>
+        <div className=" md:px-10 ">₹ {amount} </div>
       </div>
       <div className=" flex  items-center justify-center rounded-b border-t border-solid border-slate-200 p-6 md:justify-end">
         <button
@@ -90,14 +90,13 @@ export default function CheckoutPage() {
   );
 }
 
-function NoofItems({ item  }) {
+function NoofItems({ item }) {
   const [quantity, setQuantity] = useState(1);
 
   function incrementItems(item) {
-
     const noofitems = quantity + 1;
     setQuantity(noofitems);
-    item.quantity++
+    item.quantity++;
   }
 
   function decrementItems(item) {
@@ -107,7 +106,7 @@ function NoofItems({ item  }) {
       const noofitems = quantity - 1;
 
       setQuantity(noofitems);
-      item.quantity--
+      item.quantity--;
     }
   }
   return (
