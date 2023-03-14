@@ -3,6 +3,12 @@ import { StateContext } from "../components/StateContext";
 
 export default function CheckoutPage() {
   const { cartItem } = useContext(StateContext);
+  const [quantity, setQuantity] = useState();
+
+  const quantityHandler = (e) => {
+    setQuantity([...quantity, e]);
+    console.log(quantity);
+  };
   const [amount, setAmount] = useState();
 
   useEffect(() => {
@@ -26,21 +32,47 @@ export default function CheckoutPage() {
     <div className="container flex flex-1  flex-col bg-slate-50 dark:bg-slate-900   ">
       <div className=" w-full flex-auto overflow-auto p-5 ">
         <div className="mx-auto border  shadow-md ">
-          {cartItem.map((item) => (
-            <div key={item.id}>
-              <div>{item.title}</div>
-              <div>
-                <Quantity item={item} />
-              </div>
-            </div>
-          ))}
+          <table className="  mx-auto w-full table-auto  text-center   text-sm text-gray-500 dark:text-gray-400">
+            <thead className="bg-gray-50  uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+              <tr className=" ">
+                <th className=" py-3 ">Item</th>
+                {/* <th className=" py-3 ">Quantity</th> */}
+                <th className=" py-3 ">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItem.map((items) => (
+                <tr
+                  key={items.id}
+                  className=" border-b bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <td className=" px-6 py-4">
+                    <div className=" flex  ">
+                      <div className="  w-14 ">
+                        <img className="w-full " src={items.image} alt="" />
+                      </div>
+                      <div className="hidden px-3 py-2 font-bold text-lg md:block ">
+                        {items.title}
+                      </div>
+                    </div>
+                  </td>
+                  {/* <td className=" px-6 py-4 ">
+                    <div className="flex flex-col  shadow-md  transition  duration-150 ease-in-out md:inline-flex  md:flex-row ">
+                      <NoofItems item={items} />
+                    </div>
+                  </td> */}
+                  <td className=" px-6 py-4">{items.price * items.quantity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-      <div className="flex  justify-evenly  px-5  text-2xl    ">
+      <div className="flex  justify-evenly  px-5  text-3xl    ">
         <div className=" font-bold  ">Total Price: </div>
-        <div className="">
+        {/* <div className="">
           <button onClick={() => console.log(total())}>total</button>
-        </div>
+        </div> */}
         <div className=" px-10 ">₹ {amount} </div>
       </div>
       <div className=" flex  items-center justify-center rounded-b border-t border-solid border-slate-200 p-6 md:justify-end">
@@ -58,49 +90,46 @@ export default function CheckoutPage() {
   );
 }
 
-function Quantity({ item }) {
+function NoofItems({ item  }) {
   const [quantity, setQuantity] = useState(1);
 
-  const incrementItems = () => {
-    item.quantity++;
-    setQuantity(quantity + 1);
-    console.log(item);
-  };
+  function incrementItems(item) {
 
-  const decrementItems = () => {
+    const noofitems = quantity + 1;
+    setQuantity(noofitems);
+    item.quantity++
+  }
+
+  function decrementItems(item) {
     if (quantity <= 0) {
       return;
     } else {
-      item.quantity--;
-      setQuantity(quantity - 1);
-    }
-  };
+      const noofitems = quantity - 1;
 
+      setQuantity(noofitems);
+      item.quantity--
+    }
+  }
   return (
-    <div className="p-2 ">
-      <div className="flex flex-col  shadow-md  transition  duration-150 ease-in-out md:inline-flex  md:flex-row ">
+    <div>
+      <div>
         <button
           type="button"
-          onClick={() => incrementItems()}
+          onClick={() => incrementItems(item)}
           className="inline-block rounded-t bg-sky-400 px-3 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:rounded-l md:rounded-tr-none md:px-6"
         >
           +
         </button>
-        <button
-          type="button"
-          className="inline-block bg-sky-400 px-3  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:px-6"
-        >
+        <div className="inline-block bg-sky-400 px-3  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:px-6">
           {quantity}
-        </button>
+        </div>
         <button
           type="button"
-          onClick={() => decrementItems()}
+          onClick={() => decrementItems(item)}
           className="inline-block rounded-b bg-sky-400 px-3 pt-2.5  pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0  active:bg-sky-700 md:rounded-r md:rounded-bl-none md:px-6"
         >
           -
         </button>
-
-        <div>{item.price * quantity}</div>
       </div>
     </div>
   );
