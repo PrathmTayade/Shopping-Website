@@ -63,6 +63,7 @@ export default function App() {
         showCart,
         openCart,
         closeCart,
+        
       }}
     >
       <div className="container h-screen  w-full ">

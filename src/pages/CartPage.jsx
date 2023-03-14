@@ -1,21 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StateContext } from "../components/StateContext";
 
 export default function CartPage() {
   const { cartItem } = useContext(StateContext);
+  const [quantity, setQuantity] = useState(1);
 
-  function totalPrice() {
-    const total = cartItem.map((item) => item.price);
-    const initialValue = 0;
-    const price = parseInt(
-      total.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        initialValue
-      )
-    );
-    return price;
-  }
-  const price = totalPrice();
+  const incrementItems = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decrementItems = () => {
+    if (quantity === 0) {
+      return;
+    }
+
+    setQuantity(quantity - 1);
+  };
 
   return (
     <div className="container flex flex-1  flex-col bg-slate-50 dark:bg-slate-900   ">
@@ -49,6 +49,7 @@ export default function CartPage() {
                     <div className="flex flex-col  shadow-md  transition  duration-150 ease-in-out md:inline-flex  md:flex-row ">
                       <button
                         type="button"
+                        onClick={incrementItems}
                         className="inline-block rounded-t bg-sky-400 px-3 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:rounded-l md:rounded-tr-none md:px-6"
                       >
                         +
@@ -57,10 +58,11 @@ export default function CartPage() {
                         type="button"
                         className="inline-block bg-sky-400 px-3  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0 active:bg-sky-700 md:px-6"
                       >
-                        1
+                        {quantity}
                       </button>
                       <button
                         type="button"
+                        onClick={decrementItems}
                         className="inline-block rounded-b bg-sky-400 px-3 pt-2.5  pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-sky-600 focus:bg-sky-600 focus:outline-none focus:ring-0  active:bg-sky-700 md:rounded-r md:rounded-bl-none md:px-6"
                       >
                         -
@@ -77,7 +79,7 @@ export default function CartPage() {
       <div className="flex  justify-evenly  px-5  text-2xl    ">
         <div className=" font-bold  ">Total Price:</div>
         <div className="">=</div>
-        <div className=" px-10 ">₹ {price}</div>
+        <div className=" px-10 ">₹ </div>
       </div>
       <div className=" flex  items-center justify-center rounded-b border-t border-solid border-slate-200 p-6 md:justify-end">
         <button
