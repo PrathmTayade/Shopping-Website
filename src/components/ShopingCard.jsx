@@ -7,7 +7,7 @@ export default function ShopingCard({ products }) {
 
   return (
     <div>
-      <div className="w-full max-w-sm overflow-auto rounded-lg border border-gray-200 bg-white p-3 shadow-md   dark:border-slate-700 dark:bg-slate-800">
+      <div className="w-full max-w-sm  overflow-auto rounded-lg border border-gray-200 bg-white p-3 shadow-md   dark:border-slate-700 dark:bg-slate-800">
         <div className=" ">
           <img
             draggable="false"

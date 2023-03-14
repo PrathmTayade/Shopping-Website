@@ -5,12 +5,15 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import { StateContext } from "./components/StateContext";
-import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 export default function App() {
   const [products, setProducts] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [cartItem, setCartItem] = useState([]);
+
+
+    
 
   useEffect(() => {
     async function fetchData() {
@@ -40,6 +43,7 @@ export default function App() {
   }
 
   const addToCart = (e) => {
+    e.quantity = 1;
     setCartItem((cartItem) => [...cartItem, e]);
   };
 
@@ -63,7 +67,7 @@ export default function App() {
         showCart,
         openCart,
         closeCart,
-        
+    
       }}
     >
       <div className="container h-screen  w-full ">
@@ -74,7 +78,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart" element={<CheckoutPage />} />
           </Routes>
         </div>
       </div>

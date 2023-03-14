@@ -58,7 +58,7 @@ export default function NavBar() {
             <Link to="/shop">Shop</Link>
           </li>
           <li className="hidden transition-all duration-100 ease-in-out hover:scale-110 hover:font-bold hover:text-purple-600   md:block">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Checkout</Link>
           </li>
         </ul>
       </div>

@@ -43,7 +43,7 @@ export default function Cart() {
                   Items in Cart
                 </Dialog.Title>
 
-                <div className="relative flex-auto p-4 ">
+                <div className="relative flex-auto p-4  ">
                   {cartItem.length > 0 ? (
                     <table className="table-auto  divide-y-2 divide-black ">
                       <thead>
@@ -57,7 +57,7 @@ export default function Cart() {
                         {cartItem.map((items) => (
                           <tr key={items.id} className=" ">
                             <td className=" ">
-                              <div className="  ">{items.title}</div>
+                              <div className=" text-sm  ">{items.title}</div>
                             </td>
                             <td className="">
                               <div className=""> ₹{items.price}</div>
@@ -90,8 +90,26 @@ export default function Cart() {
                       </tbody>
                     </table>
                   ) : (
-                    <div>
-                      <div>No items in cart</div>
+                    <div className=" flex flex-col  ">
+                      <div className="flex-auto  ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="  text-gray-300/60 "
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-center text-lg  font-bold ">
+                        No items in cart
+                      </div>
                       <div> Please continue shooping </div>
                     </div>
                   )}
@@ -109,16 +127,20 @@ export default function Cart() {
                     >
                       Continue Shopping
                     </button>
-                    <button
-                      className="min-h-12 mr-1 mb-1 flex-auto  rounded bg-amber-500 px-6 py-3 text-sm font-bold uppercase text-black shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-amber-600"
-                      type="button"
-                      onClick={() => {
-                        closeCart();
-                        navigate("/cart");
-                      }}
-                    >
-                      Proceed to Checkout
-                    </button>
+                    {cartItem.length === 0 || (
+                      <div>
+                        <button
+                          className="min-h-12 mr-1 mb-1 flex-auto  rounded bg-amber-500 px-6 py-3 text-sm font-bold uppercase text-black shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-amber-600"
+                          type="button"
+                          onClick={() => {
+                            closeCart();
+                            navigate("/cart");
+                          }}
+                        >
+                          Proceed to Checkout
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Dialog.Panel>
