@@ -12,9 +12,6 @@ export default function App() {
   const [showCart, setShowCart] = useState(false);
   const [cartItem, setCartItem] = useState([]);
 
-
-    
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -67,20 +64,17 @@ export default function App() {
         showCart,
         openCart,
         closeCart,
-    
       }}
     >
-      <div className="container h-screen  w-full ">
-        <div className="flex h-full w-full flex-col  ">
-          <NavBar />
-          <Cart />
+      <div className="flex h-full w-full flex-col  ">
+        <NavBar />
+        <Cart />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<CheckoutPage />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/cart" element={<CheckoutPage />} />
+        </Routes>
       </div>
     </StateContext.Provider>
   );
