@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -19,20 +20,20 @@ export default function Home() {
               </p>
               <ul className="flex flex-wrap items-center gap-8">
                 <li>
-                  <a
-                    href="/shop"
-                    className="inline-flex items-center justify-center rounded-lg bg-black py-4 px-6 text-center text-base font-normal text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10"
+                  <Link
+                    to="/shop"
+                    className="inline-flex items-center justify-center rounded-lg bg-black py-4 px-6 text-center  text-xl font-medium text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10"
                   >
                     Shop
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/cart"
-                    className="inline-flex items-center justify-center rounded-lg bg-green-500 py-4 px-6 text-center text-base font-normal text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10"
+                  <Link
+                    to="/cart"
+                    className="inline-flex items-center justify-center rounded-lg bg-green-500 py-4 px-6 text-center text-xl font-medium text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10"
                   >
                     Go to Cart
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
